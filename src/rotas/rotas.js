@@ -1,19 +1,15 @@
 const express = require('express')
 const app = express();
 const rotas = express.Router();
-const path = require('path');
+const { getBook } = require('../database/db')
 
 
 app.use(express.json())
 
+rotas.get('/', function (req, res) {
+    res.redirect('/book');
+});
 
-
-rotas.use('/', (req, res) => {
-    res.send('hello world')
-})
-
-
-
-
+rotas.get('/books', getBook);
 
 module.exports = rotas
